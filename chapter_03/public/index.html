@@ -11,6 +11,12 @@
         integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
 </head>
 
+<!-- ChatGbt Summary
+hx-get="/get-price" → Tells HTMX to send an HTTP GET request to /get-price.
+hx-trigger="every 5s" → Repeats this request every 5 seconds.
+The returned response from /get-price will replace the <h2> content (so it updates with the latest Bitcoin price).
+"Loading..." → Initial text displayed until the first response comes back. -->
+
 <body>
     <div class="container">
         <h1>Bitcoin Price Tracker</h1>

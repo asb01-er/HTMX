@@ -11,6 +11,18 @@
         integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
 </head>
 
+<!-- ChatGbt summary
+<input> field
+type="text" → Standard text input.
+placeholder="Start Typing to Search for Users" → Instruction for the user.
+hx-post="/search" → Sends the input text to the /search endpoint using a POST request.
+hx-trigger="input changed delay:500ms, search" →
+input → Trigger when typing.
+changed → Only send if the input value changes.
+delay:500ms → Wait 500ms after typing before sending (to avoid too many requests).
+search → Trigger if the user presses Enter or submits a search.
+hx-target="#search-results" → The server response will replace the content inside <tbody id="search-results"> -->
+
 <body>
     <div class="container">
         <h1>Search Users</h1>
@@ -26,8 +38,8 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
                 </tr>
             </thead>
             <tbody id="search-results">

@@ -21,7 +21,7 @@ app.get('/user/:id/edit', (req, res) => {
         </div>
         <div class="mb-3">
             <label for="bio" class="form-label">Bio</label>
-            <textarea type="text" class="form-control" id="bio" name="Ernest">Follower of Christ |
+            <textarea type="text" class="form-control" id="bio" name="Ernest">Follower of Programming |
             Author of Best-selling Amazon Tech Books and Creator of Coding Courses
             </textarea>
         </div>

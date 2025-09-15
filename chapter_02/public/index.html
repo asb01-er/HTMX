@@ -24,7 +24,10 @@
             <h2 class="card-title text-center mb-4">BMI Calculator</h2>
 
             <!-- Form -->
-            <form hx-trigger="submit" hx-post="/calculate" hx-target="#result" hx-swap="innerHTML">
+            <form hx-trigger="submit" 
+            hx-post="/calculate" 
+            hx-target="#result" 
+            hx-swap="innerHTML">
               <div class="mb-3">
                 <label for="height" class="form-label">Height (meters)</label>
                 <input id="height" name="height" type="number" step="0.01" class="form-control"

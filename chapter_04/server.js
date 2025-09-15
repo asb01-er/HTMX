@@ -10,6 +10,14 @@ app.use(express.urlencoded({ extended: true }));
 // Parse JSON bodies (as sent by API clients)
 app.use(express.json());
 
+
+// chatgbt summary
+// This Express.js route handles /search
+// requests from your HTMX input field. 
+// It queries a mock API for users, 
+// filters them based on the search term, 
+// and returns an HTML snippet (rows of a table) to update the page.
+
 // Handle POST request for contacts search
 app.post('/search', async (req, res) => {
     const searchTerm = req.body.search.toLowerCase();

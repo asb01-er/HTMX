@@ -10,6 +10,14 @@ app.use(express.urlencoded({ extended: true }));
 // Parse JSON bodies (as sent by API clients)
 app.use(express.json());
 
+// ChatGbt Summary
+// Browser request → User visits /users?limit=5.
+// Server receives request → Express matches /users route.
+// Fetch data → Server requests user data from external API.
+// Process & format → Convert JSON to HTML list.
+// Send response → Server sends HTML to browser.
+// Browser renders → User sees the list of users.
+
 // request
 app.get('/users', async (req, res) => {
     setTimeout(async ()=> {

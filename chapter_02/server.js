@@ -6,6 +6,12 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+// User submits form (height + weight).
+// Server calculates BMI.
+// Server picks category + styling.
+// Server sends back an HTML card with the result.
+// Browser displays the styled BMI result.
+
 // Route
 app.post('/calculate', (req, res) => {
     const height = parseFloat(req.body.height);
