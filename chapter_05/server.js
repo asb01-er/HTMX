@@ -10,6 +10,13 @@ app.use(express.urlencoded({ extended: true }));
 // Parse JSON bodies (as sent by API clients)
 app.use(express.json());
 
+// chatgbt summary
+// Type in the email field → HTMX posts to /email.
+// The reponse replaces the entire email block (hx-swap="outerHTML").
+// If valid → success alert appears.
+// If invalid → error alert appears.
+
+
 // Handle POST request for email validation
 app.post('/email', (req, res) => {
     const submittedEmail = req.body.email;

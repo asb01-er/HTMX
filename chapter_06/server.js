@@ -10,6 +10,11 @@ app.use(express.urlencoded({ extended: true }));
 // Parse JSON bodies (as sent by API clients)
 app.use(express.json());
 
+// chatgbt summary
+// This route handles requests to /user/:id/edit.
+// When triggered (e.g., by your “Click To Edit” button in the card), it returns an HTML form for editing the user’s profile.
+// The form uses HTMX attributes to handle updating and canceling without a full page reload.
+
 // Handle GET request for profile edit
 app.get('/user/:id/edit', (req, res) => {
     // send an HTML form for editing
