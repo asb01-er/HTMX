@@ -13,12 +13,11 @@ class Contact(models.Model):
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
-        related_name='contacts' # user.contacts.all()
-
+        related_name='contacts'  # user.contacts.all()
     )
-    
+
     class Meta:
-        unique_together = ('user', 'email')    
+        unique_together = ('user', 'email')
 
     def __str__(self):
         return f"{self.name} <{self.email}>"
