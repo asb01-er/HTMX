@@ -145,3 +145,5 @@ STORAGES = {
  },
 }
 
+# Fallback for older Django versions
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
