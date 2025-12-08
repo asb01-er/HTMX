@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>Available Cars</h2>
+
+  {% if user.profile.role == 'manager' %}
+    <a href="{% url 'car_create' %}" class="btn">Add New Car</a>
+  {% endif %}
+
+  <ul>
+    {% for car in cars %}
+      <li style="margin-bottom: 15px;">
+        {% if car.image %}
+          <img src="{{ car.image.url }}" alt="Car Image" width="120" style="border-radius: 5px;">
+        {% endif %}
+
+        <strong>{{ car.make }} {{ car.model }}</strong> ({{ car.year }})
+
+        {% if user.profile.role == 'manager' %}
+          <button hx-get="{% url 'assign_car' car.id %}" 
+                  hx-target="#modal" 
+                  hx-swap="innerHTML">
+            Assign
+          </button>
+        {% endif %}
+
+        {% if car.assigned_to %}
+          - Assigned to: {{ car.assigned_to.user.username }}
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+
+  <div id="modal"></div>
+{% endblock %}

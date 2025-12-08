@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>{% if form.instance.pk %}Edit Car{% else %}Add a New Car{% endif %}</h2>
+
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table>
+      {{ form.as_table }}
+    </table>
+    <button type="submit">Save</button>
+  </form>
+
+  <p>
+    <a href="{% url 'car_list' %}">← Back to car list</a>
+  </p>
+{% endblock %}

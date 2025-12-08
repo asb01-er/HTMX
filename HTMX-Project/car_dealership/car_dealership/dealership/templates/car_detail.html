@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>{{ car.make }} {{ car.model }} ({{ car.year }})</h2>
+  {% if car.image %}
+    <img src="{{ car.image.url }}" alt="{{ car.make }} {{ car.model }}" style="width:400px;">
+  {% endif %}
+  <p><strong>Price:</strong> R{{ car.price }}</p>
+  <p><strong>Year:</strong> {{ car.year }}</p>
+  <p><strong>Available:</strong> {{ car.for_sale|yesno:"Yes,No" }}</p>
+  <a href="{% url 'cars_for_sale' %}">← Back to listings</a>
+{% endblock %}
