@@ -1,9 +1,7 @@
 from django.urls import path
+from django.contrib.auth.views import LogoutView
 from . import views
-from .views import signup_view, cars_for_sale
-from .views import manager_signup_view
-from .views import home_view
-
+from .views import signup_view, cars_for_sale, manager_signup_view, home_view
 
 urlpatterns = [
     path('', home_view, name='home'),
@@ -16,4 +14,7 @@ urlpatterns = [
     path('cars/<int:car_id>/', views.car_detail, name='car_detail'),# Read one
     path('update/<int:car_id>/', views.car_update, name='car_update'),# Update
     path('delete/<int:car_id>/', views.car_delete, name='car_delete'),# Delete
+
+    # Add this line for logout
+    path('logout/', LogoutView.as_view(next_page='home'), name='logout'),
 ]

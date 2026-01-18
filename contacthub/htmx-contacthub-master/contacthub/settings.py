@@ -7,7 +7,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
-from decouple import config
+import os
+from dotenv import load_dotenv
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -123,20 +125,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'contacts.User'
 LOGIN_URL = '/admin/'
 
-# Cloudinary configuration - Direct configuration
-cloudinary.config(
-    cloud_name=config("CLOUDINARY_CLOUD_NAME"),
-    api_key=config("CLOUDINARY_API_KEY"), 
-    api_secret=config("CLOUDINARY_API_SECRET"),
-    secure=True
-)
+# # Cloudinary configuration - Direct configuration
+# cloudinary.config(
+#     cloud_name=config("dan24q0ck"),
+#     api_key=config("768146754194221"), 
+#     api_secret=config("5eemgffC9f8k00iBWvRjc3aB8iU"),
+#     secure=True
+# )
+# Default storage for media files
+# DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
-# Cloudinary storage settings
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': config("CLOUDINARY_CLOUD_NAME"),
-    'API_KEY': config("CLOUDINARY_API_KEY"),
-    'API_SECRET': config("CLOUDINARY_API_SECRET")
-}
 
 STORAGES = {
     "default": {
@@ -147,6 +145,14 @@ STORAGES = {
     },
 }
 
+load_dotenv()
+
+# Cloudinary storage settings
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dan24q0ck',
+    'API_KEY': '768146754194221',
+    'API_SECRET': '5eemgffC9f8k00iBWvRjc3aB8iU',
+}
 
 # Fallback for older Django versions
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'

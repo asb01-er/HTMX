@@ -1,34 +1,50 @@
 {% extends 'base.html' %}
 {% block content %}
-  <h2>Available Cars</h2>
+<div class="max-w-5xl mx-auto mt-16 p-6">
+  <h2 class="text-3xl font-bold mb-6 text-center">Available Cars</h2>
 
   {% if user.profile.role == 'manager' %}
-    <a href="{% url 'car_create' %}" class="btn">Add New Car</a>
+  <div class="mb-6 text-center">
+    <a href="{% url 'car_create' %}" class="btn btn-warning px-6 py-3 font-semibold hover:btn-accent transition-colors duration-300">
+      Add New Car
+    </a>
+  </div>
   {% endif %}
 
-  <ul>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     {% for car in cars %}
-      <li style="margin-bottom: 15px;">
-        {% if car.image %}
-          <img src="{{ car.image.url }}" alt="Car Image" width="120" style="border-radius: 5px;">
-        {% endif %}
+    <div class="bg-base-100 shadow-lg rounded-xl p-4 flex flex-col items-center">
+      {% if car.image %}
+      <img src="{{ car.image.url }}" alt="Car Image" class="w-48 h-32 object-cover rounded-lg mb-4 shadow-md">
+      {% else %}
+      <div class="w-48 h-32 bg-gray-200 flex items-center justify-center rounded-lg mb-4">
+        No Image
+      </div>
+      {% endif %}
 
-        <strong>{{ car.make }} {{ car.model }}</strong> ({{ car.year }})
+      <h3 class="text-xl font-bold text-center mb-2">{{ car.make }} {{ car.model }}</h3>
+      <p class="text-gray-600 mb-2">Year: {{ car.year }}</p>
 
-        {% if user.profile.role == 'manager' %}
-          <button hx-get="{% url 'assign_car' car.id %}" 
-                  hx-target="#modal" 
-                  hx-swap="innerHTML">
-            Assign
-          </button>
-        {% endif %}
+      {% if car.assigned_to %}
+      <p class="text-sm text-gray-500 mb-2">Assigned to: {{ car.assigned_to.user.username }}</p>
+      {% endif %}
 
-        {% if car.assigned_to %}
-          - Assigned to: {{ car.assigned_to.user.username }}
-        {% endif %}
-      </li>
+      {% if user.profile.role == 'manager' %}
+      <button 
+        hx-get="{% url 'assign_car' car.id %}" 
+        hx-target="#modal" 
+        hx-swap="innerHTML"
+        class="btn btn-accent px-4 py-2 font-semibold hover:btn-secondary transition-colors duration-300"
+      >
+        Assign
+      </button>
+      {% endif %}
+    </div>
+    {% empty %}
+    <p class="text-center col-span-full">No cars available.</p>
     {% endfor %}
-  </ul>
+  </div>
 
-  <div id="modal"></div>
+  <div id="modal" class="mt-6"></div>
+</div>
 {% endblock %}
