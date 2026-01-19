@@ -57,10 +57,11 @@ def create_contact(request):
     
 
 @login_required
-@require_http_methods(['DELETE'])
+@require_http_methods(['POST'])
 def delete_contact(request, pk):
     contact = get_object_or_404(Contact, pk=pk, user=request.user)
     contact.delete()
     response = HttpResponse(status=204)
     response['HX-Trigger'] = 'contact-deleted'
+    response['HX-Redirect'] = '/'
     return response
